@@ -1,6 +1,6 @@
 <?php
 require_once 'db_connection.php';
-
+session_start();
 if ( isset($_POST['submit'] ) ) {
     //   print_r($_POST);
 
@@ -10,11 +10,13 @@ if ( isset($_POST['submit'] ) ) {
     $query ="INSERT INTO `student`( `name`, `password`) VALUES ('$name','$password')";
     $result=mysqli_query($connection, $query);
     if($result){
-        echo 'success';
+       $_SESSION['message'] = '<p>Success</p>';
     }
     else{
-        echo 'faild';
+         $_SESSION['message'] = '<p>Faild</p>';
     }
 
  }
+
+ header('location:index.php');
 ?>
